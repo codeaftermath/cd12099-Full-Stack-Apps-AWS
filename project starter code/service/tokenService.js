@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { PRIVATE_KEY, PUBLIC_KEY } from "../../keys.js"; // TODO ML : Improve by storing key pairs in a secrets manager
+import { PRIVATE_KEY, PUBLIC_KEY } from "../keys.js"; // TODO ML : Improve by storing key pairs in a secrets manager
 
 class TokenService {
   generateTokens(id) {
