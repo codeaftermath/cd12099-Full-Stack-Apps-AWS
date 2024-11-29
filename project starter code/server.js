@@ -1,6 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { filterImageFromURL, deleteLocalFiles } from "./util/util.js";
+import { router as authRoutes } from './routes/authRoutes.js';
+import { requiresAuth } from './middleware/requiresAuthMiddleware.js'
 
 // Init the Express application
 const app = express();
@@ -11,7 +13,9 @@ const port = process.env.PORT || 8082;
 // Use the body parser middleware for post requests
 app.use(bodyParser.json());
 
-app.get("/filteredimage", (req, res) => {
+app.use("/auth", authRoutes);
+
+app.get("/filteredimage", requiresAuth(), (req, res) => {
   let resource_url;
 
   try {
